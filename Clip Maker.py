@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Code that makes the clips out of a video given the markers file exported from
-Adobe Premiere Pro.
+Python code that makes the clips out of a video given the markers file exported
+ from Adobe Premiere Pro.
 
-It makes two type of clips: a usual one, made for YouTube, a second one as a
-vertical with the title as header and the YT Channel logo, made for IGTV.
+It makes two type of clips:
+- Clip made for YouTube: A common clip —trimmed version of the original video—
+  with the same specs as the original. It also writes a txt file with the title
+  of each clip.
+- Clip made for IGTV/ TikTok: Vertical clip with the title as header, the
+  original video centered, and the YT Channel banner below it. Some specs might
+  have been changed to the IGTV min specs (fps, for example). It also writes a
+  txt file with the title and the description of each of the clips.
 
 
 Created on Mon Apr  4 21:05:38 2022
@@ -27,7 +33,7 @@ from tqdm import tqdm
 MAIN_DIR = r'C:\Users\jkoki\Documents\COCO\Ciencia Sin Floro\_VIDS'
 # Directory which contains directories YT and IG
 CLIPS_DIR = r'C:\Users\jkoki\Documents\COCO\Ciencia Sin Floro\CLIPS'
-# Directory which contains the YT Channel banner
+# Path of the YouTube Channel banner file
 BANNER_PATH = r'C:\Users\jkoki\Documents\COCO\Ciencia Sin Floro\Illustr' \
               r'\CSF Frame\Banner IGTV.png'
 
@@ -35,7 +41,7 @@ BANNER_PATH = r'C:\Users\jkoki\Documents\COCO\Ciencia Sin Floro\Illustr' \
 BG = (25, 16, 26)
 FONT = 'Microsoft-YaHei-&-Microsoft-YaHei-UI'
 SIZE = 105  # fontsize
-RAT = 1.2  # Ratio w.r.t the original video
+ZOOM = 1.2  # Ratio of the video w.r.t the width of the clip.
 
 # IGTV Default Values
 MAX_CHAR = 2200
@@ -320,7 +326,7 @@ def igtv_clip_maker(markers_df: int, markers_file: int) -> None:
                     print(f'Setting Clip {i} to 30 fps...')
                     clip = clip.set_fps(30)
 
-                clip = clip.fx(vfx.resize, width=RAT*1080)
+                clip = clip.fx(vfx.resize, width=ZOOM*1080)
                 clip = clip.on_color(size=DIM, color=BG)
 
                 # Part 2: Title
