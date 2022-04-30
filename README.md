@@ -43,7 +43,7 @@ where for my PC, `ROOT_DIR = C:\Users\jkoki\Documents\COCO\Ciencia Sin Floro`.
 - Inside the `MAIN_DIR`, there must be a dir named `csf1`, this must contain the video markers named as `csf1.csv`. Also the dir `csf1` must contain a dir named `EXPORTAR AQUI` which contains the original video, the one to be clipped, named as `csf1.mp4`. This is, there must exist these two paths: `MAIN_DIR\csf1\csf1.csv` and `MAIN_DIR\csf1\EXPORTAR AQUI\csf1.mp4`.
 - Inside the `CLIPS_DIR`, there must be two dirs `YT` and `IG`, which will contain the clips for YouTube and IGTV respectively. This is, there must exist these two paths: `MAIN_DIR\YT` and `MAIN_DIR\IG`.
 
-\* These directories are also uploaded in the repo.
+\* These directories are also uploaded in the repo in `ROOT_DIR`. They have been uploaded after running the program, so it also contains the clips and respectives txt files. The original video couldn't been uploaded due to its size, however, it can downloaded from [here](https://www.pexels.com/video/ten-minutes-countdown-856925/).
 
 ### BAT File
 Finally, edit the `ClipMaker.bat` file and replace the path there with the path of your `ClipMaker.py` file.
